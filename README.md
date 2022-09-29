@@ -12,3 +12,8 @@ Then open http://localhost:8080
 
 This is just a stedi page authorization repository.
 Pay attention.
+
+git add.
+git commit -m "Something you did"
+git push
+git status
