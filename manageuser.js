@@ -1,20 +1,20 @@
 //© 2021 Sean Murdock
 
-let userName = "";
-let password = "";
+let phonenumber = "";
+let onetimepassword = "";
 let verifypassword = "";
 let passwordRegEx=/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{6,40})/;
 
-function setusername(){
-    userName = $("#username").val();
+function setphonenumber(){
+    phonenumber = $("#phonenumber").val();
 }
 
-function setuserpassword(){
-    password = $("#password").val();
-    var valid=passwordRegEx.exec(password);
-    if (!valid){
-        alert('Must be 6 digits, upper, lower, number, and symbol');
-    }
+function setonetimepassword(){
+    password = $("#onetimepassword").val();
+    var valid=passwordRegEx.exec(onetimepassword);
+    // if (!valid){
+    //     alert('Must be 6 digits, upper, lower, number, and symbol');
+    // }
 }
 
 function setverifypassword(){
@@ -46,13 +46,31 @@ function checkexpiredtoken(token){
     }
 }
 
+
+
+const sendtext =()=> {
+   setonetimepassword();
+    setphonenumber();
+    $.ajax({
+        type: 'POST',
+        url: 'https://dev.stedi.me/twofactorlogin/'+phonenumber,
+        // data: JSON.stringify({phonenumber, password}),
+        // success: function(data) {
+        //     window.location.href = "/timer.html#"+data;//add the token to the url
+        // },
+        contentType: "application/text",
+        dataType: 'text'
+    });
+
+}
+
 function userlogin(){
-    setuserpassword();
-    setusername();
+    onetimepassword();
+    setphonenumber();
     $.ajax({
         type: 'POST',
         url: 'https://dev.stedi.me/login',
-        data: JSON.stringify({userName, password}),
+        data: JSON.stringify({phonenumber, password}),
         success: function(data) {
             window.location.href = "/timer.html#"+data;//add the token to the url
         },
@@ -123,6 +141,6 @@ var enterFunction = (event) =>{
     }
 }
 
-var passwordField = document.getElementById("password");
+var passwordField = document.getElementById("onetimepassword");
 
 passwordField.addEventListener("keyup", enterFunction);

@@ -17,6 +17,12 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+p{
+  color: black;
+}
+#body_of_form{
+  background-color: #C38D9E;
+}
 body {
   margin: 8px;
 }
@@ -6976,6 +6982,7 @@ label.label{
     float: left;
     font-weight: bold;
 }
+
 fieldset p{
     clear: both;
     padding: 10px;
